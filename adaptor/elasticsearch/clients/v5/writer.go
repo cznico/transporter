@@ -93,13 +93,13 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			msg.Data().Delete(w.parentID)
 		}
 
-        var idx string
-        if _, ok := msg.Data()["_esIndex"]; ok {
-            idx = msg.Data()["_esIndex"].(string)
-            msg.Data().Delete("_esIndex")
-        } else {
-            idx = w.index
-        }
+//         var idx string
+//         if _, ok := msg.Data()["_esIndex"]; ok {
+//             idx = msg.Data()["_esIndex"].(string)
+//             msg.Data().Delete("_esIndex")
+//         } else {
+//             idx = w.index
+//         }
 
 		var br elastic.BulkableRequest
 		switch msg.OP() {

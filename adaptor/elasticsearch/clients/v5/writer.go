@@ -93,11 +93,11 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			msg.Data().Delete(w.parentID)
 		}
 
-        var idx string
-        if _, ok := msg.Data()["esIndex"]; ok {
-            idx = msg.Data()["esIndex"].(string)
+        var esIndex string
+        if _, ok := msg.Data()["_esIndex"]; ok {
+            esIndex = msg.Data()["_esIndex"].(string)
         } else {
-            idx = indexType
+            esIndex = w.index
         }
 
 		var br elastic.BulkableRequest
@@ -106,13 +106,13 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			// we need to flush any pending writes here or this could fail because we're using
 			// more than 1 worker
 			w.bp.Flush()
-			indexReq := elastic.NewBulkDeleteRequest().Index(idx).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkDeleteRequest().Index(esIndex).Type(indexType).Id(id)
 			if pID != "" {
 				indexReq.Routing(pID)
 			}
 			br = indexReq
 		case ops.Insert:
-			indexReq := elastic.NewBulkIndexRequest().Index(idx).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkIndexRequest().Index(esIndex).Type(indexType).Id(id)
 			if pID != "" {
 				indexReq.Parent(pID)
 				indexReq.Routing(pID)
@@ -120,7 +120,7 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			indexReq.Doc(msg.Data())
 			br = indexReq
 		case ops.Update:
-			indexReq := elastic.NewBulkUpdateRequest().Index(idx).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkUpdateRequest().Index(esIndex).Type(indexType).Id(id)
 			if pID != "" {
 				indexReq.Parent(pID)
 				indexReq.Routing(pID)

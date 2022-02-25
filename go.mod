@@ -10,9 +10,10 @@ require (
 	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d
 	github.com/oklog/run v1.0.0
 	github.com/olekukonko/tablewriter v0.0.0-20170128050532-febf2d34b54a
+	github.com/olivere/elastic/v7 v7.0.12
 	github.com/robertkrimen/otto v0.0.0-20171130103205-3b44b4dcb6c0
 	github.com/sirupsen/logrus v1.0.4
-	github.com/smartystreets/go-aws-auth v0.0.0-20160722044803-2043e6d0bb7e
+	github.com/smartystreets/go-aws-auth v0.0.0-20180515143844-0c1422d1fdb9
 	github.com/streadway/amqp v0.0.0-20150320153439-6a378341a305
 	gopkg.in/gorethink/gorethink.v3 v3.0.5
 	gopkg.in/mgo.v2 v2.0.0-20160818020120-3f83fa500528
@@ -26,18 +27,16 @@ require (
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
 	github.com/cenkalti/backoff v0.0.0-20150522193654-6c45d6bc1e78 // indirect
 	github.com/dlclark/regexp2 v1.1.6 // indirect
-	github.com/fortytw2/leaktest v1.3.0 // indirect
-	github.com/golang/protobuf v0.0.0-20150526012109-34a5f244f1c0 // indirect
+	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/hailocab/go-hostpool v0.0.0-20160125115350-e80d13ce29ed // indirect
-	github.com/mailru/easyjson v0.0.0-20171120080333-32fa128f234d // indirect
+	github.com/mailru/easyjson v0.7.1 // indirect
 	github.com/mattn/go-runewidth v0.0.2 // indirect
-	github.com/pkg/errors v0.8.0 // indirect
-	github.com/smartystreets/goconvey v1.6.6 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/stretchr/testify v1.7.0 // indirect
 	golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2 // indirect
-	golang.org/x/net v0.0.0-20190311183353-d8887717615a // indirect
-	golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a // indirect
-	golang.org/x/text v0.3.0 // indirect
+	golang.org/x/net v0.0.0-20200202094626-16171245cfb2 // indirect
+	golang.org/x/sys v0.0.0-20190502145724-3ef323f4f1fd // indirect
+	golang.org/x/text v0.3.2 // indirect
 	gopkg.in/airbrake/gobrake.v2 v2.0.9 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/fatih/pool.v2 v2.0.0-20160721145410-20a0a429c5f9 // indirect

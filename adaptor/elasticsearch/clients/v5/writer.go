@@ -34,7 +34,7 @@ type Writer struct {
 }
 
 func init() {
-	constraint, _ := version.NewConstraint(">= 5.0")
+	constraint, _ := version.NewConstraint(">= 5.0, < 7.0")
 	clients.Add("v5", constraint, func(opts *clients.ClientOptions) (client.Writer, error) {
 		esOptions := []elastic.ClientOptionFunc{
 			elastic.SetURL(opts.URLs...),

@@ -19,9 +19,9 @@ import (
 
 const (
 	defaultURL         = "http://127.0.0.1:9200"
-	defaultIndex       = "test_v5"
+	defaultIndex       = "test_v7"
 	testType           = "test"
-	parentDefaultIndex = "parent_test_v5"
+	parentDefaultIndex = "parent_test_v7"
 )
 
 var (
@@ -105,7 +105,7 @@ func TestWriter(t *testing.T) {
 		HTTPClient: http.DefaultClient,
 		Index:      defaultIndex,
 	}
-	vc := clients.Clients["v5"]
+	vc := clients.Clients["v7"]
 	w, _ := vc.Creator(opts)
 	w.Write(
 		message.WithConfirms(
@@ -160,7 +160,7 @@ func TestWithParentWriter(t *testing.T) {
 	}
 	// create mapping
 	createMapping()
-	vc := clients.Clients["v5"]
+	vc := clients.Clients["v7"]
 	w, _ := vc.Creator(opts)
 	// insert parent
 	w.Write(

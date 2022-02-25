@@ -81,7 +81,6 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 		w.Lock()
 		w.confirmChan = msg.Confirms()
 		w.Unlock()
-		indexType := msg.Namespace()
 		var id string
 		if _, ok := msg.Data()["_id"]; ok {
 			id = msg.ID()
@@ -106,13 +105,13 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			// we need to flush any pending writes here or this could fail because we're using
 			// more than 1 worker
 			w.bp.Flush()
-			indexReq := elastic.NewBulkDeleteRequest().Index(esIndex).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkDeleteRequest().Index(esIndex).Id(id)
 			if pID != "" {
 				indexReq.Routing(pID)
 			}
 			br = indexReq
 		case ops.Insert:
-			indexReq := elastic.NewBulkIndexRequest().Index(esIndex).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkIndexRequest().Index(esIndex).Id(id)
 			if pID != "" {
 				indexReq.Parent(pID)
 				indexReq.Routing(pID)
@@ -120,7 +119,7 @@ func (w *Writer) Write(msg message.Msg) func(client.Session) (message.Msg, error
 			indexReq.Doc(msg.Data())
 			br = indexReq
 		case ops.Update:
-			indexReq := elastic.NewBulkUpdateRequest().Index(esIndex).Type(indexType).Id(id)
+			indexReq := elastic.NewBulkUpdateRequest().Index(esIndex).Id(id)
 			if pID != "" {
 				indexReq.Parent(pID)
 				indexReq.Routing(pID)
